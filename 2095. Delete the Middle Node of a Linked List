@@ -1,0 +1,26 @@
+class Solution {
+    public ListNode deleteMiddle(ListNode head) {
+        // If the list has only one node, return null after deletion
+        if (head == null || head.next == null) {
+            return null;
+        }
+
+        // Initialize pointers
+        ListNode prev = null;
+        ListNode slow = head;
+        ListNode fast = head;
+
+        // Use slow and fast pointers to find the middle node
+        while (fast != null && fast.next != null) {
+            prev = slow;         // Store previous of slow pointer
+            slow = slow.next;    // Move slow pointer one step
+            fast = fast.next.next; // Move fast pointer two steps
+        }
+
+        // Remove the middle node by skipping it
+        prev.next = slow.next;
+
+        // Return the updated head
+        return head;
+    }
+}
